@@ -4,14 +4,14 @@
 
 ## 结论先行
 
-对于“低光照强逆光”“对向来车”这类大白话场景描述，当前实验中更推荐使用 BM25 检索 Qwen3.5-VL 生成的 caption。BM25 在这两类场景的 Top10 / Top20 唯一候选中召回更多 GT 图片，适合作为第一版检索方案。
+对于“低光照强逆光”“对向来车”这类大白话场景描述，当前实验中更推荐使用 BM25 检索 Qwen3.5-VL 生成的 caption。严格去重重跑后，BM25 在这两类场景的 Top20 唯一候选中召回更多 GT 图片，适合作为第一版检索方案。
 
-Embedding 在“雨天，前车刹车灯亮起”这种多条件组合语义场景上更强，Top20 唯一候选可以召回全部 12 张 GT。因此，当前结论不是“BM25 全面优于 Embedding”，而是：
+Embedding 在“雨天，前车刹车灯亮起”这种多条件组合语义场景上 Top10 更强，但 Top20 时 BM25 和 Embedding 都可以召回全部 12 张 GT。因此，当前结论不是“BM25 全面优于 Embedding”，而是：
 
 ```text
 通用大白话场景检索：优先 BM25
 复杂组合语义场景：Embedding 有补充价值
-推荐第一版候选规模：Top20
+推荐第一版候选规模：Top20，必要时保留 Embedding 作为复杂语义补充
 ```
 
 ## 1. 素材
@@ -69,15 +69,15 @@ Caption 模型为 Qwen3.5-VL-4B。99 个原始文件条目均成功生成 captio
 
 ## 3. 实验结果
 
-下表为按图片内容去重后的 Top10 / Top20 命中结果。去重方式为：先使用已有检索排序结果，再按 SHA256 内容哈希保留每张唯一图片第一次出现的位置，然后统计 Top10 / Top20 唯一候选命中。
+下表为严格重跑后的 Top10 / Top20 命中结果。实验先按 SHA256 内容哈希将 caption 语料去重为 79 条，然后分别用这 79 条语料重新构建 BM25 索引和 Embedding + FAISS 索引。每条 query 都在全量 79 张唯一图片中检索，GT 只用于最后统计命中，不参与检索过滤。
 
 | Query | GT 数 | 方法 | Top10 命中 | Top20 命中 |
 |---|---:|---|---:|---:|
 | 低光照下，前车强逆光 | 5 | BM25 | 2 | 4 |
 | 低光照下，前车强逆光 | 5 | Embedding | 3 | 3 |
-| 对向来车 | 53 | BM25 | 10 | 16 |
+| 对向来车 | 53 | BM25 | 10 | 17 |
 | 对向来车 | 53 | Embedding | 5 | 13 |
-| 雨天，前车刹车灯亮起 | 12 | BM25 | 7 | 11 |
+| 雨天，前车刹车灯亮起 | 12 | BM25 | 7 | 12 |
 | 雨天，前车刹车灯亮起 | 12 | Embedding | 9 | 12 |
 
 换算成召回率：
@@ -86,9 +86,9 @@ Caption 模型为 Qwen3.5-VL-4B。99 个原始文件条目均成功生成 captio
 |---|---|---:|---:|
 | 低光照下，前车强逆光 | BM25 | 40.0% | 80.0% |
 | 低光照下，前车强逆光 | Embedding | 60.0% | 60.0% |
-| 对向来车 | BM25 | 18.9% | 30.2% |
+| 对向来车 | BM25 | 18.9% | 32.1% |
 | 对向来车 | Embedding | 9.4% | 24.5% |
-| 雨天，前车刹车灯亮起 | BM25 | 58.3% | 91.7% |
+| 雨天，前车刹车灯亮起 | BM25 | 58.3% | 100.0% |
 | 雨天，前车刹车灯亮起 | Embedding | 75.0% | 100.0% |
 
 ## 4. 推理速度
@@ -96,16 +96,18 @@ Caption 模型为 Qwen3.5-VL-4B。99 个原始文件条目均成功生成 captio
 | 阶段 | 方法 | 速度 |
 |---|---|---|
 | Caption 生成 | Qwen3.5-VL-4B | 14.07 秒/张，99 个文件条目共约 23 分钟 |
-| 检索查询 | BM25 | 待补充 |
-| 检索查询 | Embedding + FAISS | 待补充 |
+| 索引构建 | BM25 | 0.0067 秒 |
+| 索引构建 | Embedding + FAISS | 7.7731 秒 |
+| 单 query 检索 | BM25 | 0.0006 ~ 0.0010 秒 |
+| 单 query 检索 | Embedding + FAISS | 0.0163 ~ 0.0337 秒 |
 
-目前可以确定：主要耗时来自 caption 生成阶段。BM25 和 FAISS 查询本身通常远快于 caption 生成，但本轮报告尚未记录可复现实测耗时，因此先标为待补充。
+可以确定：主要耗时来自 caption 生成阶段。检索阶段 BM25 和 Embedding + FAISS 都远快于 caption 生成；其中 BM25 查询耗时最低，且不需要加载 embedding 模型。
 
 ## 5. 结果分析
 
-BM25 在“低光照强逆光”和“对向来车”上更稳。原因可能是这些 caption 中存在较明确、重复出现的关键词，例如 `low light`、`glare`、`oncoming vehicle`、`opposite lane`、`headlights` 等。对于这种大白话场景描述，BM25 的词项匹配已经能覆盖主要候选。
+BM25 在“低光照强逆光”和“对向来车”上 Top20 更稳。原因可能是这些 caption 中存在较明确、重复出现的关键词，例如 `low light`、`glare`、`oncoming vehicle`、`opposite lane`、`headlights` 等。对于这种大白话场景描述，BM25 的词项匹配已经能覆盖更多候选。
 
-Embedding 在“雨天，前车刹车灯亮起”上更好。这个场景需要同时理解雨天、湿滑路面、前车、红色刹车灯、反光等组合语义，Embedding 在 Top10 和 Top20 都明显高于 BM25，并在 Top20 达到 12/12 全召回。
+Embedding 在“雨天，前车刹车灯亮起”上 Top10 更好。这个场景需要同时理解雨天、湿滑路面、前车、红色刹车灯、反光等组合语义，Embedding 在 Top10 命中 9/12，高于 BM25 的 7/12。不过 Top20 时两者都达到 12/12。
 
 “对向来车”的 GT 数较大，去重后仍有 53 张。固定 Top20 本身只允许返回 20 张，因此不可能达到很高的总体召回率。这里更合理的解读是：BM25 的前 20 个候选比 Embedding 更集中地命中了对向来车样本，但 Top20 并不能覆盖全部对向来车场景。
 
@@ -120,7 +122,7 @@ Qwen3.5-VL caption -> BM25 -> Top20 候选
 理由如下：
 
 1. BM25 实现简单，不需要每次查询加载 embedding 模型。
-2. BM25 在 2/3 个目标场景上 Top20 命中更多。
+2. BM25 在 2/3 个目标场景上 Top20 命中更多，另一个目标场景与 Embedding 持平。
 3. 对大白话式场景 query，caption 中的关键词信号足够强。
 4. Top20 候选规模较小，便于后续人工复核或二阶段筛选。
 
@@ -141,8 +143,10 @@ Qwen3.5-VL caption -> BM25 -> Top20 候选
 |---|---|
 | Caption JSON | `output/reports/caption_retrinput_hh_qwen35.json` |
 | Caption JSONL | `output/reports/caption_retrinput_hh_qwen35.jsonl` |
-| 原始召回结果 JSON | `output/reports/retrinput_hh_embedding_vs_bm25_percent_recall.json` |
-| 原始召回结果 CSV | `output/reports/retrinput_hh_embedding_vs_bm25_percent_recall.csv` |
-| 评估脚本 | `src/experiments/retrieval_percentile_recall_experiment.py` |
+| 严格去重召回结果 JSON | `output/reports/retrinput_hh_strict_dedup_embedding_vs_bm25_topk_recall.json` |
+| 严格去重召回结果 CSV | `output/reports/retrinput_hh_strict_dedup_embedding_vs_bm25_topk_recall.csv` |
+| 严格去重评估脚本 | `src/experiments/strict_dedup_recall_experiment.py` |
+| 原始 99 条百分比召回结果 JSON | `output/reports/retrinput_hh_embedding_vs_bm25_percent_recall.json` |
+| 原始 99 条百分比召回结果 CSV | `output/reports/retrinput_hh_embedding_vs_bm25_percent_recall.csv` |
 | Query 文件 | `input/processed/scene_queries_specific_en.json` |
 | 实验记录 | `docs/dev/experiment_run_record.md` |

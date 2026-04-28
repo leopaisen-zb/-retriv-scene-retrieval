@@ -136,3 +136,53 @@
 - Embedding 在 `雨天，前车刹车灯亮起` 上更早达到高召回：top20% 已召回 `10/12`，top30% 达到 `12/12`。
 - 当 top50% 放宽到 50 张候选时，两种方法在雨天刹车灯 query 上都达到 `12/12`。
 - 本实验不解释 precision；返回集合里可能包含大量非 GT 图，后续如需控制误召回，需要补充 precision 或人工误召回分析。
+
+## 2026-04-28 RetrInput_hh 严格去重 Top-k 召回实验
+
+### 实验背景
+
+- 目标：修正上一版 99 条文件路径口径，按图片内容 SHA256 全局去重后重新评估 BM25 与 Embedding。
+- 重要口径：检索阶段使用全量 `79` 张唯一图片，不按 GT 目录过滤；GT 只用于最后按 hash 统计命中。
+- Query：沿用 `input/processed/scene_queries_specific_en.json`。
+- 检索方法：`bm25` vs `qwen3vl_embedding_faiss`。
+- 指标：固定 `Top10 / Top20` 候选的 hash 级 recall。
+
+### 数据与输出
+
+- 原始 caption 条目：`99`
+- 去重后唯一图片语料：`79`
+- Caption 输入：`output/reports/caption_retrinput_hh_qwen35.json`
+- 评估 JSON：`output/reports/retrinput_hh_strict_dedup_embedding_vs_bm25_topk_recall.json`
+- 评估 CSV：`output/reports/retrinput_hh_strict_dedup_embedding_vs_bm25_topk_recall.csv`
+- 评估脚本：`src/experiments/strict_dedup_recall_experiment.py`
+
+| query | 去重后 GT 数 |
+|---|---:|
+| 低光照下，前车强逆光 | 5 |
+| 对向来车 | 53 |
+| 雨天，前车刹车灯亮起 | 12 |
+
+### 召回结果
+
+| query | method | Top10 | Top20 |
+|---|---|---:|---:|
+| low-light backlighting | BM25 | 2/5 = 40.0% | 4/5 = 80.0% |
+| low-light backlighting | Embedding | 3/5 = 60.0% | 3/5 = 60.0% |
+| oncoming vehicle | BM25 | 10/53 = 18.9% | 17/53 = 32.1% |
+| oncoming vehicle | Embedding | 5/53 = 9.4% | 13/53 = 24.5% |
+| rainy brake lights | BM25 | 7/12 = 58.3% | 12/12 = 100.0% |
+| rainy brake lights | Embedding | 9/12 = 75.0% | 12/12 = 100.0% |
+
+### 速度
+
+- BM25 索引构建：`0.0067s`
+- Embedding + FAISS 索引构建：`7.7731s`
+- BM25 单 query：`0.0006s ~ 0.0010s`
+- Embedding + FAISS 单 query：`0.0163s ~ 0.0337s`
+
+### 初步结论
+
+- BM25 在 `低光照下，前车强逆光` 和 `对向来车` 的 Top20 召回高于 Embedding。
+- `雨天，前车刹车灯亮起` 在 Top10 时 Embedding 更高，但 Top20 时 BM25 与 Embedding 均达到 `12/12`。
+- 第一版推荐方案仍是 `Qwen3.5-VL caption -> BM25 -> Top20`。
+- `对向来车` 去重后 GT 为 `53`，Top20 不可能覆盖全部目标图，因此不能表述为“Top20 覆盖全部对向来车”，只能说 BM25 在固定候选规模下召回更多。
