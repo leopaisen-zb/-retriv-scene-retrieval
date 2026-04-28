@@ -1,0 +1,39 @@
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local virtual environments
+.venv/
+.venv-*/
+venv/
+
+# Local model/vendor assets
+.models/
+.external/
+weights/
+.codex
+
+# Downloaded/raw scratch data
+Downloads/
+input/raw/
+
+# Generated bulky artifacts; keep curated reports under output/reports
+output/artifacts/
+output/comparisons/
+output/retrieval_output*/
+output/retrieval_output_*/
+
+# Temporary smoke outputs
+output/reports/_*
+
+# Historical local bundles
+prompt_caption_related_code_bundle/
+prompt_caption_related_code_bundle.tar.gz
+prompt_caption_related_code_bundle.zip
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

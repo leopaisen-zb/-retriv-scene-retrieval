@@ -1,0 +1,25 @@
+query,backend,percent,candidate_count,gt_count,recalled_gt_count,recall
+vehicle ahead under strong backlighting in low-light conditions,qwen3vl_embedding_faiss,10,10,5,1,0.2
+vehicle ahead under strong backlighting in low-light conditions,qwen3vl_embedding_faiss,20,20,5,3,0.6
+vehicle ahead under strong backlighting in low-light conditions,qwen3vl_embedding_faiss,30,30,5,3,0.6
+vehicle ahead under strong backlighting in low-light conditions,qwen3vl_embedding_faiss,50,50,5,4,0.8
+vehicle ahead under strong backlighting in low-light conditions,bm25,10,10,5,2,0.4
+vehicle ahead under strong backlighting in low-light conditions,bm25,20,20,5,3,0.6
+vehicle ahead under strong backlighting in low-light conditions,bm25,30,30,5,4,0.8
+vehicle ahead under strong backlighting in low-light conditions,bm25,50,50,5,5,1.0
+oncoming vehicle approaching in the opposite lane,qwen3vl_embedding_faiss,10,10,56,4,0.071429
+oncoming vehicle approaching in the opposite lane,qwen3vl_embedding_faiss,20,20,56,11,0.196429
+oncoming vehicle approaching in the opposite lane,qwen3vl_embedding_faiss,30,30,56,17,0.303571
+oncoming vehicle approaching in the opposite lane,qwen3vl_embedding_faiss,50,50,56,32,0.571429
+oncoming vehicle approaching in the opposite lane,bm25,10,10,56,9,0.160714
+oncoming vehicle approaching in the opposite lane,bm25,20,20,56,15,0.267857
+oncoming vehicle approaching in the opposite lane,bm25,30,30,56,22,0.392857
+oncoming vehicle approaching in the opposite lane,bm25,50,50,56,36,0.642857
+rainy road scene with the brake lights of the vehicle ahead illuminated,qwen3vl_embedding_faiss,10,10,12,5,0.416667
+rainy road scene with the brake lights of the vehicle ahead illuminated,qwen3vl_embedding_faiss,20,20,12,10,0.833333
+rainy road scene with the brake lights of the vehicle ahead illuminated,qwen3vl_embedding_faiss,30,30,12,12,1.0
+rainy road scene with the brake lights of the vehicle ahead illuminated,qwen3vl_embedding_faiss,50,50,12,12,1.0
+rainy road scene with the brake lights of the vehicle ahead illuminated,bm25,10,10,12,5,0.416667
+rainy road scene with the brake lights of the vehicle ahead illuminated,bm25,20,20,12,8,0.666667
+rainy road scene with the brake lights of the vehicle ahead illuminated,bm25,30,30,12,11,0.916667
+rainy road scene with the brake lights of the vehicle ahead illuminated,bm25,50,50,12,12,1.0

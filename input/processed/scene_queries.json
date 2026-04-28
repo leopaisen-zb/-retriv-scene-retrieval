@@ -1,0 +1,16 @@
+{
+  "queries": [
+    {
+      "query": "vehicle ahead under strong backlighting in low-light conditions",
+      "english_query": "vehicle ahead under strong backlighting in low-light conditions"
+    },
+    {
+      "query": "oncoming vehicle approaching in the opposite lane",
+      "english_query": "oncoming vehicle approaching in the opposite lane"
+    },
+    {
+      "query": "rainy road scene with the brake lights of the vehicle ahead illuminated",
+      "english_query": "rainy road scene with the brake lights of the vehicle ahead illuminated"
+    }
+  ]
+}

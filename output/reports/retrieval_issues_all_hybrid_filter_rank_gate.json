@@ -1,0 +1,233 @@
+{
+  "summary": {
+    "backend": "hybrid_embedding_bm25_filter_rank_gate",
+    "caption_result_json": "output/reports/caption_issues_all_qwen35.json",
+    "total_queries": 3,
+    "top_k": 10,
+    "note": "无 GT 评估，供人工判读。query_recall_summary 与每条 query 的 recalled_* 字段便于统计。",
+    "semantic_source_report": "output/reports/retrieval_issues_all_qwen3vl_embedding_specific_en_no_threshold.json",
+    "lexical_backend": "bm25",
+    "bm25_view_json": "output/artifacts/bm25_views/hybrid_filter_rank_gate.json",
+    "candidate_top_k": 20,
+    "semantic_top_n": 10,
+    "lexical_top_n": 8,
+    "output_max_k": 10,
+    "candidate_source": "semantic_top_k_only",
+    "filter_strategy": "semantic_rank_gate_intersect_bm25_rank_gate",
+    "retrieval_output_dir": "/home/leo494/projects/Retriv/output/retrieval_output_hybrid_filter_rank_gate",
+    "organized_query_dirs": [
+      "/home/leo494/projects/Retriv/output/retrieval_output_hybrid_filter_rank_gate/低光照下，前车强逆光",
+      "/home/leo494/projects/Retriv/output/retrieval_output_hybrid_filter_rank_gate/对向来车",
+      "/home/leo494/projects/Retriv/output/retrieval_output_hybrid_filter_rank_gate/雨天，前车刹车灯亮起"
+    ],
+    "comparison_dir": "/home/leo494/projects/Retriv/output/comparisons/hybrid_filter_rank_gate",
+    "comparison_query_dirs": [
+      "/home/leo494/projects/Retriv/output/comparisons/hybrid_filter_rank_gate/低光照下，前车强逆光",
+      "/home/leo494/projects/Retriv/output/comparisons/hybrid_filter_rank_gate/对向来车",
+      "/home/leo494/projects/Retriv/output/comparisons/hybrid_filter_rank_gate/雨天，前车刹车灯亮起"
+    ]
+  },
+  "query_recall_summary": [
+    {
+      "query": "低光照下，前车强逆光",
+      "recall_count": 3,
+      "recalled_image_filenames": [
+        "18_02_04_0_0_12019211_40.jpg",
+        "13_02_04_0_0_1735851_5.jpg",
+        "20_02_04_0_0_12027481_185.jpg"
+      ],
+      "recalled_image_paths": [
+        "/home/leo494/projects/Retriv/input/raw/issue_1006000/18_02_04_0_0_12019211_40.jpg",
+        "/home/leo494/projects/Retriv/input/raw/issue_1004000/13_02_04_0_0_1735851_5.jpg",
+        "/home/leo494/projects/Retriv/input/raw/issue_1006000/20_02_04_0_0_12027481_185.jpg"
+      ],
+      "recalled_image_ids": [
+        "18_02_04_0_0_12019211_40",
+        "13_02_04_0_0_1735851_5",
+        "20_02_04_0_0_12027481_185"
+      ],
+      "expanded_english_queries": [
+        "nighttime dashcam road scene with a lead vehicle directly ahead, strong glare and backlighting around the vehicle, low visibility, dark surroundings, and bright lights facing or reflecting toward the camera"
+      ]
+    },
+    {
+      "query": "对向来车",
+      "recall_count": 1,
+      "recalled_image_filenames": [
+        "12_02_04_0_0_1735589_185.jpg"
+      ],
+      "recalled_image_paths": [
+        "/home/leo494/projects/Retriv/input/raw/issue_1004000/12_02_04_0_0_1735589_185.jpg"
+      ],
+      "recalled_image_ids": [
+        "12_02_04_0_0_1735589_185"
+      ],
+      "expanded_english_queries": [
+        "dashcam road scene with an oncoming vehicle approaching from the opposite lane, headlights facing the camera, the vehicle positioned ahead in the opposing direction, and lane markings or road separation visible between traffic directions"
+      ]
+    },
+    {
+      "query": "雨天，前车刹车灯亮起",
+      "recall_count": 4,
+      "recalled_image_filenames": [
+        "18_02_04_0_0_12019211_40.jpg",
+        "16_02_04_0_0_11999391_15.jpg",
+        "15_02_04_0_0_3959016_120.jpg",
+        "17_02_04_0_0_12015956_125.jpg"
+      ],
+      "recalled_image_paths": [
+        "/home/leo494/projects/Retriv/input/raw/issue_1006000/18_02_04_0_0_12019211_40.jpg",
+        "/home/leo494/projects/Retriv/input/raw/issue_1006000/16_02_04_0_0_11999391_15.jpg",
+        "/home/leo494/projects/Retriv/input/raw/issue_1004000/15_02_04_0_0_3959016_120.jpg",
+        "/home/leo494/projects/Retriv/input/raw/issue_1006000/17_02_04_0_0_12015956_125.jpg"
+      ],
+      "recalled_image_ids": [
+        "18_02_04_0_0_12019211_40",
+        "16_02_04_0_0_11999391_15",
+        "15_02_04_0_0_3959016_120",
+        "17_02_04_0_0_12015956_125"
+      ],
+      "expanded_english_queries": [
+        "rainy dashcam road scene with wet reflective pavement, a lead vehicle in front, bright red brake lights or tail lights illuminated, low visibility, and reflections from vehicle lights on the wet road surface"
+      ]
+    }
+  ],
+  "query_results": [
+    {
+      "query": "低光照下，前车强逆光",
+      "search_query": "nighttime dashcam road scene with a lead vehicle directly ahead, strong glare and backlighting around the vehicle, low visibility, dark surroundings, and bright lights facing or reflecting toward the camera",
+      "expanded_english_queries": [
+        "nighttime dashcam road scene with a lead vehicle directly ahead, strong glare and backlighting around the vehicle, low visibility, dark surroundings, and bright lights facing or reflecting toward the camera"
+      ],
+      "items": [
+        {
+          "rank": 1,
+          "image_id": "18_02_04_0_0_12019211_40",
+          "image_path": "/home/leo494/projects/Retriv/input/raw/issue_1006000/18_02_04_0_0_12019211_40.jpg",
+          "score": 0.4670381546020508,
+          "caption": "This is a nighttime dashcam view of a wet city street, captured from the perspective of a moving vehicle. The timestamp \"2023-04-25 19:09:18\" and channel identifier \"CH4\" are visible in the top left corner.\n\n**Foreground and Immediate Surroundings:**\n*   **Road Surface:** The asphalt is dark and highly reflective, indicating it is wet, likely from recent rain. This causes significant glare from the headlights.\n*   **Lane Markings:** Yellow lines are visible on the road surface, guiding the lanes.\n*   **Left Side:** A curb separates the road from a landscaped area containing green bushes and trees. Several tree trunks are wrapped in a reflective gold material, which catches the light.\n*   **Right Side:** A row of parked cars lines the right side of the street. Behind them, tall palm trees are silhouetted against the dark sky.\n\n**Mid-ground and Vehicles:**\n*   **Oncoming Traffic:** Directly ahead in the opposite lane, a vehicle's bright white headlights are on, creating a strong lens flare and washing out details of the car itself.\n*   **Motorcyclist:** To the right of the center line, a person wearing a blue shirt is riding a scooter or motorcycle away from the camera. They have a red bag or item attached to the back.\n*   **Parked Cars:** On the right, a white sedan is parked closest to the camera, followed by other darker vehicles further down the line.\n\n**Background:**\n*   **Buildings:** In the distance, high-rise apartment buildings are visible, their windows lit up, creating a grid of small lights against the night sky.\n*   **Streetlights:** Overhead streetlights illuminate the scene, casting pools of light on the wet road and contributing to the overall glow.\n\n**Atmosphere:**\nThe scene is characterized by the contrast between the dark surroundings and the bright artificial lights (headlights, streetlights, building windows). The wet road surface amplifies the reflections, giving the image a glossy, slightly hazy quality typical of a rainy night.",
+          "source_result_file": "output/reports/caption_issues_all_qwen35.json"
+        },
+        {
+          "rank": 2,
+          "image_id": "13_02_04_0_0_1735851_5",
+          "image_path": "/home/leo494/projects/Retriv/input/raw/issue_1004000/13_02_04_0_0_1735851_5.jpg",
+          "score": 0.43789297342300415,
+          "caption": "This is a nighttime dashcam view of a road, likely a highway or major arterial, approaching a toll booth or checkpoint. The image is characterized by motion blur, indicating the vehicle is moving at a low speed (8 KM/H, as noted in the top right corner).\n\n**Foreground and Left Side:**\n*   **Person:** On the far left, a person is visible wearing a high-visibility yellow safety vest with reflective stripes. They appear to be standing near the road edge, possibly directing traffic or managing the checkpoint.\n*   **Barriers:** In front of the person, there are black and yellow striped barriers or bollards.\n*   **Traffic Lights:** To the left of the person, two red rectangular lights are illuminated vertically. Further back, a smaller green light is visible.\n\n**Center and Mid-ground:**\n*   **Toll Booth/Structure:** In the center-right of the frame, there is a small, illuminated structure, likely a toll booth or a guard post. It has a bright white light shining from it and a dark opening where a person might be working inside.\n*   **Barriers and Cones:** Several blue traffic cones or barriers are placed on the road surface, guiding traffic flow around the booth area.\n*   **Road Markings:** White directional arrows are painted on the asphalt, pointing forward and slightly to the right, indicating the lane for through traffic.\n\n**Background and Right Side:**\n*   **Traffic:** In the distance on the right, the red taillights of several cars are visible, showing that traffic is flowing in the opposite direction or in a separate lane.\n*   **Buildings:** In the far background on the right, faint lights from buildings can be seen, suggesting an urban environment.\n*   **Lighting:** The scene is lit by the headlights of the dashcam vehicle, the bright light from the toll booth, and ambient streetlights. The overall lighting is dim, typical of a night scene.\n\n**Text and Data Overlays:**\n*   **Top Left:** \"粤BDF7945\" (a Chinese license plate number), \"CH5\" (likely a camera channel identifier).\n*   **Top Center:** \"2023-01-31 18:42:57\" (the date and time of the recording).\n*   **Top Right:** \"8KM/H\" (the speed of the vehicle).\n\nThe overall impression is of a controlled traffic situation at a checkpoint during the evening.",
+          "source_result_file": "output/reports/caption_issues_all_qwen35.json"
+        },
+        {
+          "rank": 3,
+          "image_id": "20_02_04_0_0_12027481_185",
+          "image_path": "/home/leo494/projects/Retriv/input/raw/issue_1006000/20_02_04_0_0_12027481_185.jpg",
+          "score": 0.4270634055137634,
+          "caption": "This is a nighttime view from a vehicle’s dashboard camera, showing a wet city street under an overpass.\n\n**Foreground:**\n- The bottom portion of the image shows the dashboard or windshield of the recording vehicle.\n- A white van is partially visible on the far left edge, moving in the same direction.\n- The road surface is dark asphalt, visibly wet and reflective, indicating recent rain.\n- A yellow lane marking runs along the left side of the lane.\n- In the center-right foreground, a pedestrian crosswalk with white stripes crosses the road.\n\n**Midground:**\n- Directly ahead, in the opposite lane, a car approaches with bright headlights that create a strong glare on the wet pavement.\n- To the right of the road, parked along the curb, are several scooters and motorcycles. One scooter is light blue with a storage box on the back.\n- Small reflective bollards (white with red tops) line the edge of the sidewalk and near the crosswalk.\n- A tree with dense foliage stands on the right side, partially obscuring the view of buildings behind it.\n\n**Background:**\n- An elevated structure — likely a highway overpass or metro line — spans across the top of the frame. It is illuminated by warm-toned lights along its underside.\n- Beyond the overpass, distant city lights and building windows are faintly visible in the darkness.\n- On the right, commercial storefronts with lit signage and glass windows line the street.\n\n**Overlays:**\n- Text overlays indicate:\n  - License plate: “粤BAX3723” (Guangzhou, China)\n  - Channel: “CH4”\n  - Date and time: “2023-04-25 19:55:49”\n  - Speed: “15KM/H”\n\n**Spatial Relationships:**\n- The recording vehicle is traveling in the right-hand lane, approaching a crosswalk.\n- The oncoming car is in the left lane relative to the viewer.\n- Parked two-wheelers are to the right of the driving lane, separated by a curb and planter.\n- The overpass looms above the entire scene, creating a tunnel-like effect.\n- Lighting comes primarily from streetlights, vehicle headlights, and building illumination, all reflecting off the wet road.\n\nThe overall atmosphere is urban, active, and slightly moody due to the nighttime setting and rain-slicked surfaces.",
+          "source_result_file": "output/reports/caption_issues_all_qwen35.json"
+        }
+      ],
+      "recalled_image_paths": [
+        "/home/leo494/projects/Retriv/input/raw/issue_1006000/18_02_04_0_0_12019211_40.jpg",
+        "/home/leo494/projects/Retriv/input/raw/issue_1004000/13_02_04_0_0_1735851_5.jpg",
+        "/home/leo494/projects/Retriv/input/raw/issue_1006000/20_02_04_0_0_12027481_185.jpg"
+      ],
+      "recalled_image_filenames": [
+        "18_02_04_0_0_12019211_40.jpg",
+        "13_02_04_0_0_1735851_5.jpg",
+        "20_02_04_0_0_12027481_185.jpg"
+      ],
+      "recalled_image_ids": [
+        "18_02_04_0_0_12019211_40",
+        "13_02_04_0_0_1735851_5",
+        "20_02_04_0_0_12027481_185"
+      ],
+      "recall_count": 3
+    },
+    {
+      "query": "对向来车",
+      "search_query": "dashcam road scene with an oncoming vehicle approaching from the opposite lane, headlights facing the camera, the vehicle positioned ahead in the opposing direction, and lane markings or road separation visible between traffic directions",
+      "expanded_english_queries": [
+        "dashcam road scene with an oncoming vehicle approaching from the opposite lane, headlights facing the camera, the vehicle positioned ahead in the opposing direction, and lane markings or road separation visible between traffic directions"
+      ],
+      "items": [
+        {
+          "rank": 1,
+          "image_id": "12_02_04_0_0_1735589_185",
+          "image_path": "/home/leo494/projects/Retriv/input/raw/issue_1004000/12_02_04_0_0_1735589_185.jpg",
+          "score": 0.49909961223602295,
+          "caption": "This is a nighttime dashcam view of a city street approaching a traditional Chinese-style gate or archway.\n\n**Foreground and Road:**\n- The camera is positioned on a vehicle driving in the right-hand lane of a two-lane road.\n- White directional arrows painted on the asphalt indicate forward movement for both lanes.\n- A row of large, spherical stone bollards lines the left curb, separating the road from the sidewalk.\n- A small guard booth stands on the left side of the road, near the bollards.\n\n**Mid-ground and Traffic:**\n- Directly ahead, a car with its red taillights illuminated is driving away in the same lane.\n- Further ahead, another vehicle with bright white headlights is visible, approaching from the opposite direction.\n- Traffic lights are suspended over the intersection; the lights facing the camera are green.\n- On the left, near the guard booth, a red light is visible, possibly indicating a stop or pedestrian signal.\n\n**Background and Architecture:**\n- Dominating the background is an ornate, multi-tiered traditional Chinese gate (likely a *menhan* or city gate), featuring upturned eaves and intricate details.\n- The gate is illuminated by artificial lighting, making it stand out against the dark sky.\n- The date and time stamp \"2023-01-31 18:30:02\" and camera ID \"CH5\" are overlaid at the top of the image.\n\n**Lighting and Atmosphere:**\n- The scene is lit by streetlights, vehicle headlights/taillights, and decorative red lanterns hanging from trees on both sides of the street.\n- The overall atmosphere is calm and orderly, typical of a city street at night.\n- Trees line both sides of the road, their branches partially silhouetted against the lights.",
+          "source_result_file": "output/reports/caption_issues_all_qwen35.json"
+        }
+      ],
+      "recalled_image_paths": [
+        "/home/leo494/projects/Retriv/input/raw/issue_1004000/12_02_04_0_0_1735589_185.jpg"
+      ],
+      "recalled_image_filenames": [
+        "12_02_04_0_0_1735589_185.jpg"
+      ],
+      "recalled_image_ids": [
+        "12_02_04_0_0_1735589_185"
+      ],
+      "recall_count": 1
+    },
+    {
+      "query": "雨天，前车刹车灯亮起",
+      "search_query": "rainy dashcam road scene with wet reflective pavement, a lead vehicle in front, bright red brake lights or tail lights illuminated, low visibility, and reflections from vehicle lights on the wet road surface",
+      "expanded_english_queries": [
+        "rainy dashcam road scene with wet reflective pavement, a lead vehicle in front, bright red brake lights or tail lights illuminated, low visibility, and reflections from vehicle lights on the wet road surface"
+      ],
+      "items": [
+        {
+          "rank": 1,
+          "image_id": "18_02_04_0_0_12019211_40",
+          "image_path": "/home/leo494/projects/Retriv/input/raw/issue_1006000/18_02_04_0_0_12019211_40.jpg",
+          "score": 0.46574902534484863,
+          "caption": "This is a nighttime dashcam view of a wet city street, captured from the perspective of a moving vehicle. The timestamp \"2023-04-25 19:09:18\" and channel identifier \"CH4\" are visible in the top left corner.\n\n**Foreground and Immediate Surroundings:**\n*   **Road Surface:** The asphalt is dark and highly reflective, indicating it is wet, likely from recent rain. This causes significant glare from the headlights.\n*   **Lane Markings:** Yellow lines are visible on the road surface, guiding the lanes.\n*   **Left Side:** A curb separates the road from a landscaped area containing green bushes and trees. Several tree trunks are wrapped in a reflective gold material, which catches the light.\n*   **Right Side:** A row of parked cars lines the right side of the street. Behind them, tall palm trees are silhouetted against the dark sky.\n\n**Mid-ground and Vehicles:**\n*   **Oncoming Traffic:** Directly ahead in the opposite lane, a vehicle's bright white headlights are on, creating a strong lens flare and washing out details of the car itself.\n*   **Motorcyclist:** To the right of the center line, a person wearing a blue shirt is riding a scooter or motorcycle away from the camera. They have a red bag or item attached to the back.\n*   **Parked Cars:** On the right, a white sedan is parked closest to the camera, followed by other darker vehicles further down the line.\n\n**Background:**\n*   **Buildings:** In the distance, high-rise apartment buildings are visible, their windows lit up, creating a grid of small lights against the night sky.\n*   **Streetlights:** Overhead streetlights illuminate the scene, casting pools of light on the wet road and contributing to the overall glow.\n\n**Atmosphere:**\nThe scene is characterized by the contrast between the dark surroundings and the bright artificial lights (headlights, streetlights, building windows). The wet road surface amplifies the reflections, giving the image a glossy, slightly hazy quality typical of a rainy night.",
+          "source_result_file": "output/reports/caption_issues_all_qwen35.json"
+        },
+        {
+          "rank": 2,
+          "image_id": "16_02_04_0_0_11999391_15",
+          "image_path": "/home/leo494/projects/Retriv/input/raw/issue_1006000/16_02_04_0_0_11999391_15.jpg",
+          "score": 0.4632985293865204,
+          "caption": "This is a daytime, dashcam-style view of a multi-lane urban road under an overpass, captured on April 25, 2023, at 17:14:30. The weather appears overcast and possibly rainy, as the road surface is wet and reflective.\n\n**Foreground & Immediate Surroundings:**\n- The camera is mounted inside a vehicle, with a dark, blurry reflection or smudge across the lower center of the windshield, partially obscuring the view.\n- A yellow painted line runs along the right edge of the lane, marking the shoulder or bike lane.\n- To the far left, part of a blue car’s front wheel and fender are visible.\n\n**Vehicles (Left to Right, Front to Back):**\n1. **White Van (Left Lane):** A white commercial van is in the leftmost lane, moving forward. It has red taillights illuminated.\n2. **White SUV (Center-Left Lane):** Behind the van, a white compact SUV (possibly a Honda HR-V) is driving in the adjacent lane.\n3. **Dark SUV (Center Lane):** Directly ahead in the center lane is a dark-colored SUV (likely a BMW X3 or similar), with its brake lights on.\n4. **White SUV (Center-Right Lane):** In the lane to the right of the dark SUV, a white SUV (possibly a Honda CR-V) is also stopped or slowing, with bright red brake lights glowing.\n5. **Bus (Far Right Lane):** Further ahead in the rightmost lane, a large public bus is visible, also with brake lights on.\n6. **Other Vehicles:** Several other cars are visible further down the road, including a silver sedan behind the white SUV in the center-right lane and another vehicle partially visible behind the bus.\n\n**Infrastructure & Environment:**\n- **Overpass:** A large concrete elevated highway or train track spans across the top of the frame, supported by thick pillars. It creates a tunnel-like effect over the road.\n- **Traffic Lights:** Red traffic lights are visible in the distance, just beyond the vehicles, indicating that traffic is stopped or slowing.\n- **Trees & Sidewalks:** On the right side, trees line the sidewalk, and some pedestrians with umbrellas can be seen near the curb.\n- **Signage:** A blue pedestrian crossing sign is visible on the right side of the road.\n- **Text Overlays:** In the top-left corner, text reads “粤BAY9023” (a Chinese license plate prefix) and “CH4”. The timestamp “2023-04-25 17:14:30” is centered at the top.\n\n**Atmosphere & Lighting:**\n- The scene is lit by diffuse daylight, typical of an overcast day.\n- Wet pavement reflects the red taillights and ambient light, adding to the visual texture.\n- The overall mood is one of typical urban congestion during evening rush hour.\n\nIn summary, this is a busy, multi-lane city street under an overpass during rainy conditions, with multiple vehicles stopped or moving slowly at a red light. The perspective is from within a car, capturing the immediate traffic flow and surrounding infrastructure.",
+          "source_result_file": "output/reports/caption_issues_all_qwen35.json"
+        },
+        {
+          "rank": 3,
+          "image_id": "15_02_04_0_0_3959016_120",
+          "image_path": "/home/leo494/projects/Retriv/input/raw/issue_1004000/15_02_04_0_0_3959016_120.jpg",
+          "score": 0.44925808906555176,
+          "caption": "This is a nighttime dashcam view of a vehicle approaching a toll booth or checkpoint on a city street.\n\n**Foreground and Immediate Surroundings:**\n*   **The Toll Booth:** Dominating the left-center of the frame is a toll plaza structure. It features a large, white, angular canopy extending over the lane. Beneath the canopy is a booth with blue and white markings. A barrier arm is visible, currently in the down position, blocking the lane.\n*   **The Primary Vehicle:** Directly in front of the camera vehicle, occupying the center of the lane, is a silver or light-colored SUV. Its bright red taillights are illuminated, reflecting on the wet asphalt. The license plate is visible but blurry.\n*   **Road Surface:** The road appears wet, as evidenced by the strong reflections of the red taillights and the overhead streetlights on the pavement.\n*   **Traffic Indicators:** To the right of the SUV, there are several small, vertical bollards with reflective strips (blue and yellow). Further ahead, traffic lights are visible, showing green.\n\n**Mid-ground and Background:**\n*   **Left Side:** To the left of the toll booth, there is a building with lit windows. A streetlight illuminates the area, casting a yellow glow. Several parked cars are visible further down the street on the far left.\n*   **Right Side:** On the right side of the road, there is a dark, temporary-looking fence or construction hoarding. A bright green illuminated sign is mounted on it. Behind the fence, a multi-story residential building is visible in the background, with some windows lit.\n*   **Overhead:** A bright streetlight is positioned high up on the right side, casting a significant pool of light onto the road and the building behind the fence.\n\n**Text and Data Overlays:**\n*   **Top Left:** The text \"粤BAY7267\" (a Chinese license plate prefix) and \"CH4\" are displayed.\n*   **Top Center:** The timestamp \"2023-03-08 02:42:55\" is clearly visible.\n*   **Top Right:** The speed \"30KM/H\" is displayed.\n\n**Spatial Relationships:**\nThe camera vehicle is positioned in the lane directly behind the SUV, approaching the toll booth. The toll booth is to the left of the driving lane. The construction fence is on the right shoulder. The scene is framed by buildings on both sides, creating a corridor-like effect for the road. The lighting is a mix of artificial sources: the bright overhead streetlight, the warm glow from the building on the left, and the cool white light from the toll booth and traffic signals.",
+          "source_result_file": "output/reports/caption_issues_all_qwen35.json"
+        },
+        {
+          "rank": 4,
+          "image_id": "17_02_04_0_0_12015956_125",
+          "image_path": "/home/leo494/projects/Retriv/input/raw/issue_1006000/17_02_04_0_0_12015956_125.jpg",
+          "score": 0.4355091452598572,
+          "caption": "This is a nighttime street scene captured from a vehicle's dashboard camera, indicated by the timestamp \"2023-04-25 18:49:22\" and location code \"CH4\" in the upper left. The weather is rainy, evidenced by the wet asphalt which reflects the myriad of lights from streetlamps, storefronts, and vehicle headlights.\n\n**Foreground and Immediate Surroundings:**\n*   **Right Side:** A man stands on the sidewalk holding a large black umbrella. He is wearing a dark t-shirt and shorts and appears to be looking down at a phone or device in his hands. Partially visible next to him is another person in a blue skirt or dress.\n*   **Center/Right Lane:** A dark sedan (license plate ending in B-20L38) is directly ahead in the lane. Its red taillights are illuminated. Just in front of it is a white car, also with its taillights on.\n*   **Left Side:** A dense cluster of parked motorcycles and scooters lines the curb. Behind them, a white van is partially visible.\n\n**Mid-ground and Background:**\n*   **Street:** The road stretches into the distance, flanked by multi-story buildings. The wet surface creates strong, elongated reflections of the yellow streetlights and colorful shop signs.\n*   **Buildings and Shops:** On both sides of the street, commercial buildings are lit up with various signs. On the right, a brightly lit sign with red and yellow colors is visible. On the left, there are rows of shops with illuminated signage.\n*   **Traffic Infrastructure:** Further down the road, a traffic light is visible, showing a red signal. In the far distance, the silhouettes of taller skyscrapers rise against the dark sky.\n*   **Pedestrians:** Several other pedestrians can be seen further down the street on the left side, some appearing to use umbrellas.\n\n**Overall Composition:**\nThe image is framed by the buildings on either side, creating a corridor effect. The primary focus is the flow of traffic in the center, with the parked motorcycles on the left and the pedestrian on the right providing context to the urban environment. The lighting is a mix of artificial sources, creating a high-contrast scene typical of a rainy city night.",
+          "source_result_file": "output/reports/caption_issues_all_qwen35.json"
+        }
+      ],
+      "recalled_image_paths": [
+        "/home/leo494/projects/Retriv/input/raw/issue_1006000/18_02_04_0_0_12019211_40.jpg",
+        "/home/leo494/projects/Retriv/input/raw/issue_1006000/16_02_04_0_0_11999391_15.jpg",
+        "/home/leo494/projects/Retriv/input/raw/issue_1004000/15_02_04_0_0_3959016_120.jpg",
+        "/home/leo494/projects/Retriv/input/raw/issue_1006000/17_02_04_0_0_12015956_125.jpg"
+      ],
+      "recalled_image_filenames": [
+        "18_02_04_0_0_12019211_40.jpg",
+        "16_02_04_0_0_11999391_15.jpg",
+        "15_02_04_0_0_3959016_120.jpg",
+        "17_02_04_0_0_12015956_125.jpg"
+      ],
+      "recalled_image_ids": [
+        "18_02_04_0_0_12019211_40",
+        "16_02_04_0_0_11999391_15",
+        "15_02_04_0_0_3959016_120",
+        "17_02_04_0_0_12015956_125"
+      ],
+      "recall_count": 4
+    }
+  ]
+}
