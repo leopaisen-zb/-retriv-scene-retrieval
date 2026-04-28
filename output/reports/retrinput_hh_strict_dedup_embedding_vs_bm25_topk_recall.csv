@@ -1,13 +1,19 @@
 query,backend,top_k,corpus_unique_count,gt_count,recalled_gt_count,recall,query_seconds
-vehicle ahead under strong backlighting in low-light conditions,bm25,10,79,5,2,0.4,0.00101
-vehicle ahead under strong backlighting in low-light conditions,bm25,20,79,5,4,0.8,0.00101
-vehicle ahead under strong backlighting in low-light conditions,qwen3vl_embedding_faiss,10,79,5,3,0.6,0.033665
-vehicle ahead under strong backlighting in low-light conditions,qwen3vl_embedding_faiss,20,79,5,3,0.6,0.033665
-oncoming vehicle approaching in the opposite lane,bm25,10,79,53,10,0.188679,0.000551
-oncoming vehicle approaching in the opposite lane,bm25,20,79,53,17,0.320755,0.000551
-oncoming vehicle approaching in the opposite lane,qwen3vl_embedding_faiss,10,79,53,5,0.09434,0.016545
-oncoming vehicle approaching in the opposite lane,qwen3vl_embedding_faiss,20,79,53,13,0.245283,0.016545
-rainy road scene with the brake lights of the vehicle ahead illuminated,bm25,10,79,12,7,0.583333,0.00058
-rainy road scene with the brake lights of the vehicle ahead illuminated,bm25,20,79,12,12,1.0,0.00058
-rainy road scene with the brake lights of the vehicle ahead illuminated,qwen3vl_embedding_faiss,10,79,12,9,0.75,0.016348
-rainy road scene with the brake lights of the vehicle ahead illuminated,qwen3vl_embedding_faiss,20,79,12,12,1.0,0.016348
+vehicle ahead under strong backlighting in low-light conditions,bm25,10,79,5,2,0.4,0.000998
+vehicle ahead under strong backlighting in low-light conditions,bm25,20,79,5,4,0.8,0.000998
+vehicle ahead under strong backlighting in low-light conditions,bm25,30,79,5,5,1.0,0.000998
+vehicle ahead under strong backlighting in low-light conditions,qwen3vl_embedding_faiss,10,79,5,3,0.6,0.022776
+vehicle ahead under strong backlighting in low-light conditions,qwen3vl_embedding_faiss,20,79,5,3,0.6,0.022776
+vehicle ahead under strong backlighting in low-light conditions,qwen3vl_embedding_faiss,30,79,5,4,0.8,0.022776
+oncoming vehicle approaching in the opposite lane,bm25,10,79,53,10,0.188679,0.000569
+oncoming vehicle approaching in the opposite lane,bm25,20,79,53,17,0.320755,0.000569
+oncoming vehicle approaching in the opposite lane,bm25,30,79,53,25,0.471698,0.000569
+oncoming vehicle approaching in the opposite lane,qwen3vl_embedding_faiss,10,79,53,5,0.09434,0.016524
+oncoming vehicle approaching in the opposite lane,qwen3vl_embedding_faiss,20,79,53,13,0.245283,0.016524
+oncoming vehicle approaching in the opposite lane,qwen3vl_embedding_faiss,30,79,53,21,0.396226,0.016524
+rainy road scene with the brake lights of the vehicle ahead illuminated,bm25,10,79,12,7,0.583333,0.00056
+rainy road scene with the brake lights of the vehicle ahead illuminated,bm25,20,79,12,12,1.0,0.00056
+rainy road scene with the brake lights of the vehicle ahead illuminated,bm25,30,79,12,12,1.0,0.00056
+rainy road scene with the brake lights of the vehicle ahead illuminated,qwen3vl_embedding_faiss,10,79,12,9,0.75,0.016294
+rainy road scene with the brake lights of the vehicle ahead illuminated,qwen3vl_embedding_faiss,20,79,12,12,1.0,0.016294
+rainy road scene with the brake lights of the vehicle ahead illuminated,qwen3vl_embedding_faiss,30,79,12,12,1.0,0.016294

@@ -145,7 +145,7 @@
 - 重要口径：检索阶段使用全量 `79` 张唯一图片，不按 GT 目录过滤；GT 只用于最后按 hash 统计命中。
 - Query：沿用 `input/processed/scene_queries_specific_en.json`。
 - 检索方法：`bm25` vs `qwen3vl_embedding_faiss`。
-- 指标：固定 `Top10 / Top20` 候选的 hash 级 recall。
+- 指标：固定 `Top10 / Top20 / Top30` 候选的 hash 级 recall。
 
 ### 数据与输出
 
@@ -164,14 +164,14 @@
 
 ### 召回结果
 
-| query | method | Top10 | Top20 |
-|---|---|---:|---:|
-| low-light backlighting | BM25 | 2/5 = 40.0% | 4/5 = 80.0% |
-| low-light backlighting | Embedding | 3/5 = 60.0% | 3/5 = 60.0% |
-| oncoming vehicle | BM25 | 10/53 = 18.9% | 17/53 = 32.1% |
-| oncoming vehicle | Embedding | 5/53 = 9.4% | 13/53 = 24.5% |
-| rainy brake lights | BM25 | 7/12 = 58.3% | 12/12 = 100.0% |
-| rainy brake lights | Embedding | 9/12 = 75.0% | 12/12 = 100.0% |
+| query | method | Top10 | Top20 | Top30 |
+|---|---|---:|---:|---:|
+| low-light backlighting | BM25 | 2/5 = 40.0% | 4/5 = 80.0% | 5/5 = 100.0% |
+| low-light backlighting | Embedding | 3/5 = 60.0% | 3/5 = 60.0% | 4/5 = 80.0% |
+| oncoming vehicle | BM25 | 10/53 = 18.9% | 17/53 = 32.1% | 25/53 = 47.2% |
+| oncoming vehicle | Embedding | 5/53 = 9.4% | 13/53 = 24.5% | 21/53 = 39.6% |
+| rainy brake lights | BM25 | 7/12 = 58.3% | 12/12 = 100.0% | 12/12 = 100.0% |
+| rainy brake lights | Embedding | 9/12 = 75.0% | 12/12 = 100.0% | 12/12 = 100.0% |
 
 ### 速度
 
@@ -182,7 +182,7 @@
 
 ### 初步结论
 
-- BM25 在 `低光照下，前车强逆光` 和 `对向来车` 的 Top20 召回高于 Embedding。
+- BM25 在 `低光照下，前车强逆光` 和 `对向来车` 的 Top20 / Top30 召回高于 Embedding。
 - `雨天，前车刹车灯亮起` 在 Top10 时 Embedding 更高，但 Top20 时 BM25 与 Embedding 均达到 `12/12`。
 - 第一版推荐方案仍是 `Qwen3.5-VL caption -> BM25 -> Top20`。
 - `对向来车` 去重后 GT 为 `53`，Top20 不可能覆盖全部目标图，因此不能表述为“Top20 覆盖全部对向来车”，只能说 BM25 在固定候选规模下召回更多。
