@@ -1,0 +1,7 @@
+Pillow
+torch
+transformers
+qwen-vl-utils
+rank-bm25
+faiss-cpu
+numpy

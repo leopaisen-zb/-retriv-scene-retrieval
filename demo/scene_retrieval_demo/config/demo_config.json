@@ -1,0 +1,30 @@
+{
+  "caption": {
+    "model_path": "/mnt/d/qwen-vl/models_cache_qwen3.5/Qwen/Qwen3.5-4B",
+    "image_root": "RetrInput_hh",
+    "prompt_file": "demo/scene_retrieval_demo/config/caption_prompt.json",
+    "output_json": "output/reports/caption_retrinput_hh_qwen35.json",
+    "output_jsonl": "output/reports/caption_retrinput_hh_qwen35.jsonl",
+    "max_new_tokens": 512,
+    "max_images": 0
+  },
+  "retrieval": {
+    "caption_result_json": "output/reports/caption_retrinput_hh_qwen35.json",
+    "query_file": "demo/scene_retrieval_demo/config/scene_queries_specific_en.json",
+    "label_root": "RetrInput_hh",
+    "top_k": 30,
+    "top_ks": [10, 20, 30],
+    "backends": ["bm25", "qwen3vl_embedding_faiss"],
+    "deduplicate_by_hash": true,
+    "output_json": "output/reports/demo_scene_retrieval_results.json",
+    "eval_output_json": "output/reports/retrinput_hh_strict_dedup_embedding_vs_bm25_topk_recall.json",
+    "eval_output_csv": "output/reports/retrinput_hh_strict_dedup_embedding_vs_bm25_topk_recall.csv"
+  },
+  "embedding": {
+    "embedder_script_path": "/home/leo494/projects/Retriv/.external/Qwen3-VL-Embedding/src/models/qwen3_vl_embedding.py",
+    "embedding_model_path": "/home/leo494/projects/Retriv/.models/Qwen3-VL-Embedding-2B",
+    "instruction": "Represent the user's input.",
+    "torch_dtype": "bfloat16",
+    "batch_size": 8
+  }
+}

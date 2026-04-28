@@ -1,0 +1,16 @@
+{
+  "queries": [
+    {
+      "query": "vehicle ahead under strong backlighting in low-light conditions",
+      "english_query": "nighttime dashcam road scene with a lead vehicle directly ahead, strong glare and backlighting around the vehicle, low visibility, dark surroundings, and bright lights facing or reflecting toward the camera"
+    },
+    {
+      "query": "oncoming vehicle approaching in the opposite lane",
+      "english_query": "dashcam road scene with an oncoming vehicle approaching from the opposite lane, headlights facing the camera, the vehicle positioned ahead in the opposing direction, and lane markings or road separation visible between traffic directions"
+    },
+    {
+      "query": "rainy road scene with the brake lights of the vehicle ahead illuminated",
+      "english_query": "rainy dashcam road scene with wet reflective pavement, a lead vehicle in front, bright red brake lights or tail lights illuminated, low visibility, and reflections from vehicle lights on the wet road surface"
+    }
+  ]
+}
